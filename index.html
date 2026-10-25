@@ -22,9 +22,103 @@
       text-shadow: 3px 3px 6px #1a3f80;
       padding-top: 2rem;
     }
+    /* The outside of the XP window: a blue frame with rounded top corners */
+    .window {
+      max-width: 500px;
+      margin: 2rem auto;
+      background: #0a56d8;
+      border: 3px solid #0a56d8;
+      border-radius: 10px 10px 0 0;
+    }
+    /* The title bar at the top of the window */
+    .title-bar {
+      color: white;
+      font-weight: bold;
+      padding: 6px 10px;
+    }
+    /* The white part inside the window where the joke goes */
+    .window p {
+      margin: 0;
+      padding: 1.5rem;
+      background: #ece9d8;
+      font-size: 1.3rem;
+      text-align: center;
+    }
+    /* The brick button. position: absolute lets us place it exactly,
+       and left: 150px puts it 150 pixels from the left edge of the screen. */
+    .brick {
+      position: absolute;
+      left: 150px;
+      top: 220px;
+      width: 160px;
+      height: 70px;
+      background: #b5442c;
+      border: 3px solid #7a2a1a;
+      border-radius: 4px;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <h1>15 Brown Walls in a Pizzeria</h1>
+  <!-- A <div> is a box. This one is our XP window! -->
+  <div class="window">
+    <div class="title-bar">Joke.exe</div>
+    <!-- A <p> is a paragraph. This one holds the joke -->
+    <p>What do you call banana shoes? slippers!</p>
+  </div>
+  <!-- A <button> is something you can click. It doesn't do anything yet! -->
+  <button class="brick" id="brick">Hit me</button>
+
+  <script>
+    // Our 30 jokes live in a list (an "array"). Each one is in quotes, with a comma after it.
+    const jokes = [
+      "What do you call banana shoes? Slippers!",
+      "Why did the robber jump in the shower? To make a clean getaway!",
+      "Why did the scarecrow win an award? Because he was outstanding in his field!",
+      "What do you call a fish with no eyes? A fsh!",
+      "Why don't eggs tell jokes? They'd crack each other up!",
+      "What do you call a sleeping dinosaur? A dino-snore!",
+      "Why did the cookie go to the doctor? Because it felt crummy!",
+      "What did the ocean say to the beach? Nothing, it just waved!",
+      "Why can't a bicycle stand up by itself? It's two tired!",
+      "What do you call cheese that isn't yours? Nacho cheese!",
+      "Why did the math book look sad? It had too many problems!",
+      "What do you call a bear with no teeth? A gummy bear!",
+      "Why did the tomato turn red? Because it saw the salad dressing!",
+      "What did one wall say to the other wall? I'll meet you at the corner!",
+      "Why do bees have sticky hair? Because they use honeycombs!",
+      "What do you call a snowman in summer? A puddle!",
+      "Why did the banana go to the doctor? It wasn't peeling well!",
+      "What do you get when you cross a snowman and a dog? Frostbite!",
+      "Why was the computer cold? It left its Windows open!",
+      "What kind of tree fits in your hand? A palm tree!",
+      "Why did the pizza maker go broke? He just couldn't make enough dough!",
+      "What do you call a pig that does karate? A pork chop!",
+      "Why did the golfer bring two pairs of pants? In case he got a hole in one!",
+      "What do you call a dog magician? A labracadabrador!",
+      "Why do cows wear bells? Because their horns don't work!",
+      "What's brown and sticky? A stick!",
+      "Why did the student eat his homework? The teacher said it was a piece of cake!",
+      "What do you call a lazy kangaroo? A pouch potato!",
+      "Why are ghosts bad at lying? You can see right through them!",
+      "What did the pencil say to the paper? I dot my i's on you!"
+    ];
+
+    // Find the joke paragraph and the brick button on the page
+    const jokeText = document.querySelector(".window p");
+    const brick = document.getElementById("brick");
+
+    // When the brick is clicked, pick a random joke and show it
+    brick.addEventListener("click", function () {
+      // Math.random() gives a number from 0 up to (but not including) 1.
+      // Multiplying by 30 and rounding down gives 0 to 29, a spot in the list.
+      const spot = Math.floor(Math.random() * jokes.length);
+      jokeText.textContent = jokes[spot];
+    });
+  </script>
 </body>
 </html>
